@@ -1,0 +1,112 @@
+<odoo>
+  <record id="car_tree_view" model="ir.ui.view">
+    <field name="name">Car List</field>
+    <field name="model">car</field>
+    <field name="arch" type="xml">
+      <tree string="Car List">
+        <field name="name"/>
+        <field name="image" widget="image" class="oe_avatar"/>
+        <field name="m_date"/>
+        <field name="km"/>
+        <field name="showroom_id"/>
+        <field name="model"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="car_form_view" model="ir.ui.view">
+    <field name="name">Car Form</field>
+    <field name="model">car</field>
+    <field name="arch" type="xml">
+      <form string="Car Form">
+        <sheet>
+          <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_128&quot;}"/>
+          <group>
+            <field name="name"/>
+            <field name="m_date"/>
+            <field name="km"/>
+            <field name="showroom_id"/>
+            <field name="model"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="car_view_calender" model="ir.ui.view">
+        <field name="name">Car Calender</field>
+        <field name="model">car</field>
+        <field name="arch" type="xml">
+            <calendar date_start="m_date" color="name">
+                <field name="name"/>
+                <field name="m_date"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="car_graph_view">
+            <field name="name">Car Graph</field>
+            <field name="model">car</field>
+            <field name="arch" type="xml">
+                <graph string="Participations by Courses">
+                    <field name="name"/>
+                    <field name="km" type="measure"/>
+                </graph>
+            </field>
+    </record>
+
+    <record model="ir.ui.view" id="session_gantt_view">
+            <field name="name">Gantt</field>
+            <field name="model">car</field>
+            <field name="arch" type="xml">
+                <gantt string="Session Gantt"
+                       date_start="m_date"
+                       default_group_by='name'>
+                </gantt>
+            </field>
+        </record>
+
+    <record id="showroom_tree_view" model="ir.ui.view">
+    <field name="name">Showroom List</field>
+    <field name="model">showroom</field>
+    <field name="arch" type="xml">
+      <tree string="Showroom List">
+        <field name="name"/>
+        <field name="city"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="showroom_form_view" model="ir.ui.view">
+    <field name="name">Showroom Form</field>
+    <field name="model">showroom</field>
+    <field name="arch" type="xml">
+      <form string="Showroom Form">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="city"/>
+            <field name="car_id"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="car_action" model="ir.actions.act_window">
+    <field name="name">Car World</field>
+    <field name="res_model">car</field>
+    <field name="view_mode">tree,form,calendar,graph,gantt</field>
+  </record>
+
+  <record id="showroom_action" model="ir.actions.act_window">
+    <field name="name">Showroom</field>
+    <field name="res_model">showroom</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="car_root_menu" name="Car World"/>
+  <menuitem id="car_menu" name="Car" sequence="1" parent="car_root_menu" action="car_action"/>
+  <menuitem id="showroom_menu" name="Showroom" sequence="2" parent="car_root_menu" action="showroom_action"/>
+
+</odoo>
