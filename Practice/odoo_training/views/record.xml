@@ -1,12 +1,13 @@
 <odoo>
+  <!-- Car_Treeview -->
   <record id="car_tree_view" model="ir.ui.view">
     <field name="name">Car List</field>
     <field name="model">car</field>
     <field name="arch" type="xml">
       <tree string="Car List">
         <field name="name"/>
-        <field name="image" widget="image" class="oe_avatar"/>
         <field name="m_date"/>
+        <field name="image" widget="image" class="oe_avatar"/>
         <field name="km"/>
         <field name="showroom_id"/>
         <field name="model"/>
@@ -14,13 +15,14 @@
     </field>
   </record>
 
+  <!-- Formview -->
   <record id="car_form_view" model="ir.ui.view">
     <field name="name">Car Form</field>
     <field name="model">car</field>
     <field name="arch" type="xml">
       <form string="Car Form">
         <sheet>
-          <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_128&quot;}"/>
+          <field name="image" widget="image" class="oe_avatar"/>
           <group>
             <field name="name"/>
             <field name="m_date"/>
@@ -33,6 +35,7 @@
     </field>
   </record>
 
+  <!-- Calenderview -->
   <record id="car_view_calender" model="ir.ui.view">
         <field name="name">Car Calender</field>
         <field name="model">car</field>
@@ -44,6 +47,7 @@
         </field>
     </record>
 
+    <!-- Graphview -->
     <record model="ir.ui.view" id="car_graph_view">
             <field name="name">Car Graph</field>
             <field name="model">car</field>
@@ -55,6 +59,7 @@
             </field>
     </record>
 
+    <!-- Ganttview -->
     <record model="ir.ui.view" id="session_gantt_view">
             <field name="name">Gantt</field>
             <field name="model">car</field>
@@ -66,6 +71,51 @@
             </field>
         </record>
 
+    <!-- Kanbanview -->
+    <record model="ir.ui.view" id="pway_food_test_kanban_view">
+            <field name="name">Kanban</field>
+            <field name="model">car</field>
+            <field name="arch" type="xml">
+                <kanban class="o_food_test_kanban" sample="1">
+                    <field name="name"/>
+                    <field name="km"/>
+                    <field name="model"/>
+                    <templates>
+                        <t t-name="kanban-box">
+
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_food_test_kanban">
+                                <div class="o_kanban_image">
+                                    <img alt="Contact image" t-if="record.image_128" t-att-src="kanban_image('car', 'image_128', record.value)"/>
+                                </div>
+                                <div t-attf-class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                       <ul>
+                                            <li><field name="name"/></li>
+                                            <li><field name="km"/></li>
+                                            <li><field name="model"/></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Pivotview -->
+        <record id="pway_test_pivot_view" model="ir.ui.view">
+            <field name="name">Pivot</field> 
+            <field name="model">car</field>
+            <field name="arch" type="xml">
+                <pivot string="Pivot View" disable_linking="True">      
+                    <field name="name" type="col"/>
+                    <field name="km" type="col"/>   
+                    <field name="model" type="col"/>
+                </pivot>  
+            </field>
+        </record>
+    <!-- Showroom_Treeview -->
     <record id="showroom_tree_view" model="ir.ui.view">
     <field name="name">Showroom List</field>
     <field name="model">showroom</field>
@@ -76,7 +126,7 @@
       </tree>
     </field>
   </record>
-
+  <!-- Showroom_Formview -->
   <record id="showroom_form_view" model="ir.ui.view">
     <field name="name">Showroom Form</field>
     <field name="model">showroom</field>
@@ -93,10 +143,21 @@
     </field>
   </record>
 
+  <!-- Inherit_Form -->
+
+   <record model="ir.ui.view" id="inherit_form_view">
+            <field name="name">Inherit_Form</field>
+            <field name="model">inherit.car</field>
+            <field name="inherit_id" ref="odoo_training.car_form_view"/>
+            <field name="arch" type="xml">
+                    <field name="name"/>
+            </field>
+        </record> 
+
   <record id="car_action" model="ir.actions.act_window">
     <field name="name">Car World</field>
     <field name="res_model">car</field>
-    <field name="view_mode">tree,form,calendar,graph,gantt</field>
+    <field name="view_mode">tree,form,calendar,graph,gantt,kanban,pivot</field>
   </record>
 
   <record id="showroom_action" model="ir.actions.act_window">
@@ -105,8 +166,15 @@
     <field name="view_mode">tree,form</field>
   </record>
 
+  <record id="inherit_action" model="ir.actions.act_window">
+    <field name="name">Inherit</field>
+    <field name="res_model">car</field>
+    <field name="view_mode">form</field>
+  </record>
+
   <menuitem id="car_root_menu" name="Car World"/>
   <menuitem id="car_menu" name="Car" sequence="1" parent="car_root_menu" action="car_action"/>
   <menuitem id="showroom_menu" name="Showroom" sequence="2" parent="car_root_menu" action="showroom_action"/>
+  <menuitem id="inherit_menu" name="Inherit Field" sequence="3" parent="car_root_menu" action="inherit_action"/>
 
 </odoo>

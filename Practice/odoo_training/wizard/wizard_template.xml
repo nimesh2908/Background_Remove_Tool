@@ -1,0 +1,32 @@
+<odoo>
+	<data>
+		<record id="showroom_updtate_wizard" model="ir.ui.view">
+			<field name="name">Wizard</field>
+			<field name="model">wizard</field>
+			<field name="arch" type="xml">
+				<form>
+					<group>
+						<group>
+							<field name="showroom_id"/>
+						</group>
+					</group>
+
+					<footer>
+						<button string="Update Showroom" name="add_showroom" type="object" />
+						<button string="Cancel" special="cancel" class="btn btn-info" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="showroom_updtate_wizard" model="ir.actions.act_window">
+			<field name="name">Showroom Update</field>
+			<field name="res_model">wizard</field>
+			<field name="view_mode">form</field>
+			<field name="binding_model_id" ref="model_car"/>
+			<field name="target">new</field>
+		</record>
+
+
+	</data>
+</odoo>
