@@ -1,0 +1,25 @@
+<odoo>
+<record id="car_view_tree_inherit" model="ir.ui.view">
+        <field name="name">Car Tree</field>
+        <field name="model">car.inherit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="image"/>
+                <field name="km"/>
+                <field name="m_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="car_inherit_action" model="ir.actions.act_window" >
+        <field name="name">Car</field>
+        <field name="res_model">car.inherit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="car_inherit_menu" name="Car Inherit Menu"/>
+
+    <menuitem id="car_menu" name="Inherti Car" sequence="1" action="car_inherit_action" parent="car_inherit_menu"/>
+
+</odoo>

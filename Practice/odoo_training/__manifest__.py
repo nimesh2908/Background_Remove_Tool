@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Extra',
     'sequence': 5,
-    'summary': 'odoo tarining',
+    'summary': 'odoo training',
     'depends': ['base'],
 
     'description': """
