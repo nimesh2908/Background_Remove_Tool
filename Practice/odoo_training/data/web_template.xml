@@ -1,0 +1,10 @@
+<odoo>
+	<data> 
+		 <record id="car_details" model="website.menu">
+		            <field name="name">Car Details</field>
+		            <field name="url">/car_details</field>
+		            <field name="parent_id" ref="website.main_menu"/>
+		            <field name="sequence" type="int">10</field>
+		</record>
+	</data>
+</odoo>

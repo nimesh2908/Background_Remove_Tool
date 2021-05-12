@@ -6,4 +6,4 @@ class Car_Inheritance(models.Model):
 	_description = "Inherit Data Of Car"
 	_inherit = 'car'
 
-	km = fields.Integer(string = "Kilometers")
+	owner_car = fields.Char(string = "Name of Owner")

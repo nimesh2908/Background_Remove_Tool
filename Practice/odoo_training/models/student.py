@@ -23,3 +23,5 @@ class Owner(models.Model):
 	_inherit = 'car'
 	_name = 'inherit.car'
 	_description = "Inherit Class"
+
+	owner_name = fields.Char(string = "Owner Name")

@@ -1,0 +1,32 @@
+<odoo>
+    <template id="car_template" name="Event">
+      <t t-call="website.layout">
+        <div id="wrap ">
+            <h1 class="text-center">
+              <span>Car Details</span>
+            </h1>
+           
+              <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">M_date</th>
+                      <th scope="col">KIlometer</th>
+                      <th scope="col">Model</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                            <t t-foreach="result" t-as="res">
+                                <tr>
+                                            <td><t t-esc="res.name"></t></td>
+                                            <td><t t-esc="res.m_date"></t></td>
+                                            <td><t t-esc="res.km"></t></td>
+                                            <td><t t-esc="res.model"></t></td>
+                                 </tr>
+                            </t>
+                    </tbody>
+              </table>           
+        </div>
+      </t>
+  </template>
+</odoo>
