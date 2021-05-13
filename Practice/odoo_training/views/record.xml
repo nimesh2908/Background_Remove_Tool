@@ -11,6 +11,8 @@
         <field name="km"/>
         <field name="showroom_id"/>
         <field name="model"/>
+        <field name="price"/>
+        <field name="total"/>
       </tree>
     </field>
   </record>
@@ -22,14 +24,33 @@
     <field name="arch" type="xml">
       <form string="Car Form">
         <sheet>
-          <field name="image" widget="image" class="oe_avatar"/>
-          <group>
-            <field name="name"/>
-            <field name="m_date"/>
-            <field name="km"/>
-            <field name="showroom_id"/>
-            <field name="model"/>
-          </group>
+          <notebook>
+            <page string="Car Details">
+              <group>
+                <field name="image" widget="image" class="oe_avatar"/>
+              </group>
+              <group>
+                <field name="name"/>
+                <field name="m_date"/>
+                <field name="km"/>
+                <field name="model"/>
+                <field name="price"/>
+              </group>
+            </page>
+            <page string="Showroom Details">
+              <group>
+                <field name="showroom_id"/>
+              </group>
+            </page>
+            <page string="Parts">
+              <group>
+                <field name="exhaust"/>
+                <field name="sun_roof"/>
+                <field name="bass_tube"/>
+                <field name="total" readonly="1"/>
+              </group>
+            </page>
+          </notebook>
         </sheet>
       </form>
     </field>
@@ -115,6 +136,7 @@
                 </pivot>  
             </field>
         </record>
+
     <!-- Showroom_Treeview -->
     <record id="showroom_tree_view" model="ir.ui.view">
     <field name="name">Showroom List</field>
@@ -143,7 +165,7 @@
     </field>
   </record>
 
-  <record model="ir.ui.view" id="pway_food_test_inherit_form_view">
+  <record model="ir.ui.view" id="inherit_form_view">
             <field name="name">Inherit Car View</field>
             <field name="model">inherit.car</field>
             <field name="inherit_id" ref="odoo_training.car_tree_view"/>

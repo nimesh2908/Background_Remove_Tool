@@ -1,4 +1,4 @@
-from odoo import  fields, models
+from odoo import  fields, api, models
 
 class Car(models.Model):
 	_name = 'car'
@@ -10,6 +10,16 @@ class Car(models.Model):
 	km = fields.Integer(string = "Kilometers")
 	showroom_id = fields.Many2one('showroom', string ="Showroom Name")
 	model = fields.Selection([('top','Top'),('bottem','Bottem')], default = 'top')
+	price = fields.Integer(string ="Price")
+	exhaust = fields.Integer(string="exhaust")
+	sun_roof = fields.Integer(string="sun_roof")
+	bass_tube = fields.Integer(string="bass_tube")
+	total = fields.Integer(compute="compute_total",store=True)
+
+	@api.depends('exhaust','sun_roof','bass_tube','price')
+	def compute_total(self):
+		for rec in self:
+			rec.total=rec.exhaust + rec.sun_roof + rec.bass_tube + rec.price
 
 class Showroom(models.Model):
 	_name = 'showroom'

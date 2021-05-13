@@ -5,29 +5,31 @@
             <t t-foreach="docs" t-as="line">
                 <t t-call="web.external_layout">
                     <div class="page">
-                            <h2>Car Details Report</h2>
-                            <br/><br/>
-                                    <div class="row mt32 mb32" id="informations">
-                                        <div class="col-auto col-3 mw-100 mb-2">
-                                           <strong>Car Name:</strong>
-                                             <p class="m-0" t-field="line.name"/>
-                                        </div>
-                                        <div  class="col-auto col-3 mw-100 mb-2">
-                                            <strong>Kilometers:</strong>
-                                            <p class="m-0" t-field="line.km"/>
-                                        </div>
-                                        <div  class="col-auto col-3 mw-100 mb-2">
-                                            <strong>Model:</strong>
-                                            <p class="m-0" t-field="line.model"/>
-                                        </div>
-                                        <div  class="col-auto col-3 mw-100 mb-2">
-                                            <strong>Showroom:</strong>
-                                            <p class="m-0" t-field="line.showroom_id"/>
-                                        </div>
-                                        <div  class="col-auto col-3 mw-100 mb-2">
-                                            <p class="m-0" t-field="line.image"/>
-                                        </div>
-                                    </div>
+                        <h2>Car Details Report</h2>
+                        <br/><br/>
+                        <div class="row mt32 mb32" id="informations">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                               <strong>Car Name:</strong>
+                                 <p class="m-0" t-field="line.name"/>
+                            </div>
+                            <div  class="col-auto col-3 mw-100 mb-2">
+                                <strong>Kilometers:</strong>
+                                <p class="m-0" t-field="line.km"/>
+                            </div>
+                            <div  class="col-auto col-3 mw-100 mb-2">
+                                <strong>Model:</strong>
+                                <p class="m-0" t-field="line.model"/>
+                            </div>
+                            <div  class="col-auto col-3 mw-100 mb-2">
+                                <strong>Showroom:</strong>
+                                <p class="m-0" t-field="line.showroom_id"/>
+                            </div>
+                            <div  class="col-auto col-3 mw-100 mb-2">
+                                <strong>Price:</strong>
+                                <p class="m-0" t-field="line.price"/>
+                            </div>
+                            
+                        </div>
                     </div>
                 </t>
             </t>

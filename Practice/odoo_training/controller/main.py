@@ -4,7 +4,7 @@ from odoo.http import request
 class Main(http.Controller):
 
     @http.route('/car_details', type='http', auth='public', website=True)
-    def car_details(self, **post):
+    def car_details(self, **kwargs):
         res = request.env['car'].search([])
         for record in res:
             print(record)
