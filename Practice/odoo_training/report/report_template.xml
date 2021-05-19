@@ -1,38 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <record id="action_car_test" model="ir.actions.report">
+            <field name="name">Car Report </field>
+            <field name="model">car</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">odoo_training.car_report</field>
+            <field name="report_file">odoo_training.car_report</field>
+            <field name="print_report_name">'Car Details Report'</field>
+            <field name="binding_model_id" ref="model_car"/>
+            <field name="binding_type">report</field>
+    </record>
+
+    <report
+        id="car_report_primary"
+        model="car"
+        string="Car Report Primary"
+        name="odoo_training.inherit_report_car_view_primary"
+        file="odoo_trainee.car_report"
+        report_type="qweb-pdf" 
+        attachment_use="True"/>
+
     <template id="car_report">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="line">
                 <t t-call="web.external_layout">
                     <div class="page">
                         <h2>Car Details Report</h2>
-                        <br/><br/>
-                        <div class="row mt32 mb32" id="informations">
-                            <div class="col-auto col-3 mw-100 mb-2">
-                               <strong>Car Name:</strong>
-                                 <p class="m-0" t-field="line.name"/>
-                            </div>
-                            <div  class="col-auto col-3 mw-100 mb-2">
-                                <strong>Kilometers:</strong>
-                                <p class="m-0" t-field="line.km"/>
-                            </div>
-                            <div  class="col-auto col-3 mw-100 mb-2">
-                                <strong>Model:</strong>
-                                <p class="m-0" t-field="line.model"/>
-                            </div>
-                            <div  class="col-auto col-3 mw-100 mb-2">
-                                <strong>Showroom:</strong>
-                                <p class="m-0" t-field="line.showroom_id"/>
-                            </div>
-                            <div  class="col-auto col-3 mw-100 mb-2">
-                                <strong>Price:</strong>
-                                <p class="m-0" t-field="line.price"/>
-                            </div>
-                            
-                        </div>
+                        <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Kilometer</th>
+                                <th>ShowRoom</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <t t-foreach="state.data" t-as="i"> -->
+                                    <tr t-foreach="docs" t-as="doc">
+                                        <td><t t-esc="doc.name"/></td>
+                                        <td><t t-esc="doc.km"/></td>
+                                        <td><t t-esc="doc.showroom_id.name"/></td>
+                                        <td><t t-esc="doc.price"/></td>
+                                    </tr>
+                                <!-- </t> -->
+                        </tbody>
+                    </table>
                     </div>
                 </t>
             </t>
         </t>
+    </template>
+
+    <template id="inherit_report_car_view_primary" inherit_id="car_report">
+        <xpath expr="(//th)[1]" position="after">
+            <th scope="col">Manufacture Date</th>
+        </xpath>
+        <xpath expr="(//td)[1]" position="after">
+            <td align='center'><span t-field="doc.m_date"/></td>
+        </xpath>
     </template>
 </odoo>

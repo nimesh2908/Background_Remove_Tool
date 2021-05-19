@@ -16,7 +16,6 @@
         'controller/website_template.xml',
         'data/web_template.xml',
         'views/record.xml',
-        'report/car_report.xml',
         'report/report_template.xml',
     ],
 

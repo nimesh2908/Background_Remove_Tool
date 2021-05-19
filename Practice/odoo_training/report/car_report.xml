@@ -11,16 +11,5 @@
             <field name="binding_model_id" ref="model_car"/>
             <field name="binding_type">report</field>
         </record>
-
-        <record id="action_food_test" model="ir.actions.report">
-            <field name="name">Car Primary Report </field>
-            <field name="model">car</field>
-            <field name="report_type">qweb-pdf</field>
-            <field name="report_name">odoo_training.primary_report_carview</field>
-            <field name="report_file">odoo_training.primary_car_report</field>
-            <field name="print_report_name">'Car Details Report'</field>
-            <field name="binding_model_id" ref="model_car"/>
-            <field name="binding_type">report</field>
-        </record>
 	</data>
 </odoo>
